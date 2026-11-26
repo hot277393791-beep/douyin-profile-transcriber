@@ -4,7 +4,7 @@
 
 ## Windows 首次使用
 
-安装 Node.js 22 或更新版本、Python 3.11（带 Python Launcher）和 Git。克隆仓库或解压 ZIP，再在项目目录打开 PowerShell。运行安装脚本，接着在弹出的浏览器里登录抖音，回到终端按 Enter 保存登录状态。
+安装 Node.js 22 或更新版本和 Python 3.11（带 Python Launcher）。用 Git 克隆仓库，也可以下载 ZIP 解压，再在项目目录打开 PowerShell。运行安装脚本，接着在弹出的浏览器里登录抖音，回到终端按 Enter 保存登录状态。
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File .\setup.ps1

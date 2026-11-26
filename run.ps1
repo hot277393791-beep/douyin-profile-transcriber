@@ -36,9 +36,9 @@ $ModelCache = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromP
 function Read-Capture {
     if (-not (Test-Path -LiteralPath $summaryPath) -or -not (Test-Path -LiteralPath $worksPath) -or -not (Test-Path -LiteralPath $csvPath)) { return $null }
     $summary = Get-Content -Raw -LiteralPath $summaryPath -Encoding UTF8 | ConvertFrom-Json
-    $works = @(Get-Content -Raw -LiteralPath $worksPath -Encoding UTF8 | ConvertFrom-Json)
+    $works = Get-Content -Raw -LiteralPath $worksPath -Encoding UTF8 | ConvertFrom-Json
     $expected = if ($summary.bodyAwemeCountText) { [int]$summary.bodyAwemeCountText } else { [int]$summary.profileAwemeCount }
-    return [pscustomobject]@{ Summary = $summary; Works = $works; Expected = $expected }
+    return [pscustomobject]@{ Summary = $summary; Works = @($works | Where-Object { $null -ne $_ }); Expected = $expected }
 }
 
 if (-not (Test-Path -LiteralPath (Join-Path $root 'node_modules\playwright') -PathType Container)) { throw 'Run setup.ps1 first.' }

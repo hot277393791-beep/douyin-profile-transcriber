@@ -205,8 +205,11 @@ async function main() {
 
   console.log(JSON.stringify({ stage: 'opening_profile' }));
   const response = await page.goto(args.url, { waitUntil: 'commit', timeout: 50000 });
-  const loadedUrl = new URL(page.url());
-  if (!['www.douyin.com', 'douyin.com'].includes(loadedUrl.hostname) || !loadedUrl.pathname.startsWith('/user/')) {
+  const isCreatorProfile = (url) => url.protocol === 'https:' &&
+    ['www.douyin.com', 'douyin.com'].includes(url.hostname) && url.pathname.startsWith('/user/');
+  // Share links may navigate again after the first HTML document commits.
+  await page.waitForURL(isCreatorProfile, { waitUntil: 'commit', timeout: 30000 }).catch(() => {});
+  if (!isCreatorProfile(new URL(page.url()))) {
     await browser.close();
     throw new Error('The link did not open a Douyin creator homepage. Try the creator homepage URL.');
   }
