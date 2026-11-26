@@ -1,0 +1,11 @@
+{
+  "name": "douyin-profile-transcriber",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Collect Douyin profile videos and transcribe them locally on Windows.",
+  "engines": { "node": ">=22" },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "1.1.0",
+    "playwright": "1.59.1"
+  }
+}

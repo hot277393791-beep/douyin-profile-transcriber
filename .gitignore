@@ -1,0 +1,17 @@
+/node_modules/
+/.venv/
+/.auth/
+/.cache/
+/runs/
+/output/
+__pycache__/
+*.pyc
+*.log
+*.csv
+*.jsonl
+*storage-state*.json
+*cookies*.txt
+*.m4a
+*.wav
+*.mp4
+.env*
